@@ -18,6 +18,10 @@ size = (1000,800)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Happy Desk Designer")
 
+#Hopefully makes a quit button?
+#pygame.draw.rect(screen, >INSERT COLOUR<, 990, 790, 20, 10)
+#screen.blit('quit?', 990, 790)
+
 # Define colors here
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -63,6 +67,7 @@ current_screen = 'loading' # pay attention to which screen user is on
 
 
 # Define loading screen 
+#loading_screen = pygame.display.set_mode(size)
 
 # Call main
 
