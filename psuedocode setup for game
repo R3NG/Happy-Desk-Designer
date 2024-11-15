@@ -19,8 +19,33 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Happy Desk Designer")
 
 #Hopefully makes a quit button?
-#pygame.draw.rect(screen, >INSERT COLOUR<, 990, 790, 20, 10)
+#button_rect = pygame.Rect(300, 250 200 50) #button property (x,y), width, height
+#pygame.draw.rect(screen, >INSERT COLOUR<, button_rect)
+#text_surface = font.render(button_text, True, WHITE)
+#text_rect = text_surface.get_rect(center=button_rect.center)
+#screen.blit(text_surface, text_rect)
 #screen.blit('quit?', 990, 790)
+
+'''
+if event.type == pygame.MOUSEBUTTONDOWN:
+    if button_rect.collidepoint(event.pos):  # Check if button was clicked
+      pygame.quit()
+'''
+
+
+
+'''
+for event in pygame.event.get(): # event handling loop
+
+  if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE): #if the escape key was pressed
+    pygame.quit()
+    sys.exit()
+  elif event.type == MOUSEMOTION: #tracks if and where (x,y) position of mouse motion
+    mousex, mousey = event.pos
+  elif event.type == MOUSEBUTTONUP: #if the mouseClicked is set to True, then it most likely means the button was clicked
+    mousex, mousey = event.pos
+    mouseClicked = True
+''' #this is to try and see the different ways for the user to exit the game
 
 # Define colors here
 BLACK = (0, 0, 0)
@@ -68,6 +93,55 @@ current_screen = 'loading' # pay attention to which screen user is on
 
 # Define loading screen 
 #loading_screen = pygame.display.set_mode(size)
+
+def slideAnimation(board, direction, message, animationSpeed):
+
+  # Note: This function does not check if the move is valid.
+  blankx, blanky = getBlankPosition(board)
+
+  if direction == UP:
+    movex = blankx
+    movey = blanky + 1
+  elif direction == DOWN:  
+    movex = blankx
+    movey = blanky - 1
+  elif direction == LEFT:
+    movex = blankx + 1
+    movey = blanky
+  elif direction == RIGHT:
+    movex = blankx - 1
+    movey = blanky
+
+  # prepare the base surface
+
+  drawBoard(board, message)
+
+  baseSurf = DISPLAYSURF.copy()
+
+  # draw a blank space over the moving tile on the baseSurf Surface.
+
+  moveLeft, moveTop = getLeftTopOfTile(movex, movey)
+
+  pygame.draw.rect(baseSurf, BGCOLOR, (moveLeft, moveTop, TILESIZE, TILESIZE))
+
+  for i in range(0, TILESIZE, animationSpeed):
+
+    # animate the tile sliding over
+    checkForQuit()
+
+    DISPLAYSURF.blit(baseSurf, (0, 0))
+
+    if direction == UP:
+      drawTile(movex, movey, board[movex][movey], 0, -i)
+    if direction == DOWN:
+      drawTile(movex, movey, board[movex][movey], 0, i)
+    if direction == LEFT:
+      drawTile(movex, movey, board[movex][movey], -i, 0)
+    if direction == RIGHT:
+      drawTile(movex, movey, board[movex][movey], i, 0)
+
+pygame.display.update()
+FPSCLOCK.tick(FPS)
 
 # Call main
 
