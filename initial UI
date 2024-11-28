@@ -158,6 +158,23 @@ while running:
         display_rules()
     elif current_screen == "game":
         display_game_screen(selected_professor)
+    
+    ''' # for the drag and drop function
+    for event in pygame.event.get(): #this line of code checks for any event that occurs
+    if event.type == pygame.MOUSEBUTTONDOWN: #this conditional is for if the event was a mousebutton being pressed
+      if event.button == 1: #this is if the button was a left click
+        for num, box in enumerate(>INSERT LIST OF OBJECTS<):
+          if box.collidepoint(event.pos): #this conditional is to check which object the user clicked, specifying the index and the specific object, based on collision and the mouse position.
+            active_box = num #sets the box that the mouse has clicked on as the active box
+
+    if event.type == pygame.MOUSEBUTTONUP: #the following code is for if the user lets go/drops the object
+      if event.button == 1:
+        active_box = None
+
+    if event.type == pygame.MOUSEMOTION: #the following code moves the object to the user's position by following the mouses position
+      if active_box != None:
+        boxes[active_box].move_ip(event.rel)
+    '''
 
     pygame.display.flip()
 
