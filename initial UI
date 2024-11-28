@@ -80,6 +80,21 @@ def draw_prof(professor, x, y, radius=100, custom_text=None):
     text = custom_text if custom_text else professor
     draw_text(text, x, y + radius + 20, centered=True, font_type=small_font)
 
+def desk_objects():
+    objects = []
+    for i in len(10):
+        obj_1 = pygame.draw.rect(current_screen)
+        obj_2= pygame.draw.rect
+        obj_3 = pygame.draw.rect
+        obj_4 = pygame.draw.rect
+        obj_5 = pygame.draw.rect
+        obj_6 = pygame.draw.rect
+        obj_7 = pygame.draw.rect
+        obj_8 = pygame.draw.rect
+        obj_9 = pygame.draw.rect
+        obj_10 = pygame.draw.rect
+#CHANGE ABOVE TO HAVE IMAGE IN IT
+
 # Screens
 def display_main_menu():
     """Render the main menu."""
@@ -174,6 +189,7 @@ while running:
     if event.type == pygame.MOUSEMOTION: #the following code moves the object to the user's position by following the mouses position
       if active_box != None:
         boxes[active_box].move_ip(event.rel)
+#http://www.codingwithruss.com/pygame/how-to-click-and-drag-objects-in-pygame/ website where I got the code from
 '''
 
     pygame.display.flip()
